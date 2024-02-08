@@ -26,14 +26,14 @@ nav-menu:
   permalink: blog
 
 # use false to turn off any social media links
-twitter: https://twitter.com/
-facebook: https://facebook.com/
-instagram: https://instagram.com/
-github: https://github.com/
-linkedin: https://linkedin.com/
+twitter: https://twitter.com/nmans01
+facebook: false
+instagram: false
+github: https://github.com/nman01
+linkedin: false
 medium: false
 google-scholar: false
-email: false
+email: nate@centercityprint.com
 
 # footer information
 footer-msg: "Powered by Tailpages"
