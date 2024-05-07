@@ -3,8 +3,8 @@ baseurl: "" # the name of your github repo
 url: "https://nmans01.github.io" # the url of your github pages
 
 # site information used in page title, meta data etc.
-title: N's Tailpage Test
-description: A Github Pages (Jekyll) template based on TailwindCSS
+title: Nate Mansfied - Fullstack Developer
+description: My personal page B)
 
 # color theme for links
 theme-color: indigo # indigo|yellow|pink|green|stone|
