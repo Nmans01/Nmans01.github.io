@@ -1,0 +1,66 @@
+---
+import type { CollectionEntry } from "astro:content";
+import FormattedDate from "../components/FormattedDate.astro";
+import Base from "./Base.astro";
+import Show from "./Show.astro";
+import { Image } from "astro:assets";
+
+type Props = CollectionEntry<"blog">["data"];
+
+const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
+---
+
+<Base title={title} description={description}>
+	<article class="contents">
+		<div class="flex flex-col justify-end p-6 px-[max(1.5rem,50vw-36rem)]">
+			<h1 class="text-5xl mb-2">{title}</h1>
+			<div class="date">
+				<!-- <FormattedDate date={pubDate} /> -->
+				<Show when={!!updatedDate}>
+					<span class="last-updated-on" slot="fallback">
+						Posted <FormattedDate date={pubDate} />
+					</span>
+					<div class="last-updated-on">
+						Updated <FormattedDate date={updatedDate!} />
+					</div>
+				</Show>
+			</div>
+		</div>
+		<div
+			class="overflow-y-auto p-6 px-[max(1.5rem,50vw-36rem)] lg:text-lg flex flex-col gap-4"
+		>
+			<Show when={!!heroImage}>
+				<div
+					class="p-8 -m-8 hover:bg-whizte/20 z-50"					
+					style={{ perspective: "1000px" }}
+					_={`
+					on mouseleave
+						log "not hovering"
+						set #theImage's *transform to "rotate3d(0, 0, 0, 0deg)"
+					on mousemove(event)
+						measure my top
+						measure my left
+						measure my width
+						measure my height
+						set relativeX to event.clientX - left
+						set relativeY to event.clientY - top
+						set dx to (relativeX / width) - 0.5
+						set dy to (relativeY / height) - 0.5
+						-- log dx + ", " + dy
+						set #theImage's *transform to \`rotate3d(\${dy},\${-dx}, 0, -15deg)\`
+					`}
+				>
+					<Image
+						id="theImage"
+						class="transition-all"
+						width={1020}
+						height={510}
+						src={heroImage!}
+						alt=""
+					/>
+				</div>
+			</Show>
+			<slot />
+		</div>
+	</article>
+</Base>

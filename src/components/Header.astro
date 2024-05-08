@@ -1,0 +1,26 @@
+---
+import HeaderLink from "./HeaderLink.astro";
+import { SITE_TITLE } from "../consts";
+---
+
+<header class="contents">
+	<h2 class="p-6">
+		<a href="/" class="flex flex-col gap-0.5">
+			<span class="text-4xl font-semibold">{SITE_TITLE}</span><br />
+			<span class="text-lg">Full-Stack Developer</span>
+		</a>
+	</h2>
+	<nav
+		class="flex gap-4 md:gap-2 max-md:py-0 max-md:pb-2 p-6 md:flex-col whitespace-nowrap overflow-x-auto"
+	>
+		<HeaderLink href="/about">About</HeaderLink>
+		<HeaderLink href="/projects">Projects</HeaderLink>
+		<HeaderLink href="/tech-stack">Tech Stack</HeaderLink>
+		<HeaderLink href="/blog">Blog</HeaderLink>
+		<div class="flex-1 max-lg:hidden"></div>
+		<!-- <HeaderLink href="/about">For Fun</HeaderLink> -->
+		<HeaderLink href="/about">Guest Book</HeaderLink>
+		<HeaderLink href="/about">Contact Me</HeaderLink>
+		<HeaderLink href="/about">Source Code</HeaderLink>
+	</nav>
+</header>

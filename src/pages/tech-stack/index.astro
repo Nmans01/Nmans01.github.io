@@ -1,0 +1,51 @@
+---
+import { Image } from "astro:assets";
+import { getCollection } from "astro:content";
+import Base from "../../layouts/Base.astro";
+import Show from "../../layouts/Show.astro";
+
+const posts = (await getCollection("stack")).sort((a, b) =>
+	a.data.title.localeCompare(b.data.title),
+);
+---
+
+<Base>
+	<div class="flex flex-col justify-end p-6">
+		<h1 class="text-5xl">My Tech Stack</h1>
+		<span></span>
+	</div>
+	<section class="overflow-y-auto p-4 lg:snap-y snap-mandatory">
+		<ul class="grid grid-cols-2 gap-6">
+			{
+				posts.map(
+					({ slug, data: { icon, title, pubDate, description } }) => (
+						<li class=" max-lg:hover:brightness-90 transition-all snap-center">
+							<a
+								href={`/blog/${slug}/`}
+								class="flex items-center gap-4 py-6 w-full"
+							>
+								<Show when={!!icon}>
+									<Image
+										width={96}
+										height={96}
+										src={icon!}
+										alt=""
+									/>
+								</Show>
+								<div>
+									<h4 class="text-3xl">{title}</h4>
+									<div class="text-base-content/60">
+										{description}
+									</div>
+									{/* <p class="whitespace-nowrap">
+										<FormattedDate date={pubDate} />
+									</p> */}
+								</div>
+							</a>
+						</li>
+					),
+				)
+			}
+		</ul>
+	</section>
+</Base>
