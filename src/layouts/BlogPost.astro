@@ -36,7 +36,7 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 					_={`
 					on mouseleave
 						log "not hovering"
-						set #theImage's *transform to "rotate3d(0, 0, 0, 0deg)"
+						transition #theImage's *transform to "rotate3d(0, 0, 0, 0deg)"
 					on mousemove(event)
 						measure my top
 						measure my left
@@ -46,13 +46,15 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 						set relativeY to event.clientY - top
 						set dx to (relativeX / width) - 0.5
 						set dy to (relativeY / height) - 0.5
+						set distanceToCenter to Math.sqrt((dx * dx) + (dy * dy))
+						set deg to (distanceToCenter * 25)
 						-- log dx + ", " + dy
-						set #theImage's *transform to \`rotate3d(\${dy},\${-dx}, 0, -15deg)\`
+						set #theImage's *transform to \`rotate3d(\${dy},\${-dx}, 0,\${-deg}deg)\`
 					`}
 				>
 					<Image
 						id="theImage"
-						class="transition-all"
+						class="transxition-all"
 						width={1020}
 						height={510}
 						src={heroImage!}

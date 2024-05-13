@@ -24,14 +24,14 @@ const posts = (await getCollection("stack")).sort((a, b) =>
 								href={`/blog/${slug}/`}
 								class="flex items-center gap-4 py-6 w-full"
 							>
-								<Show when={!!icon}>
+								{/* <Show when={!!icon}>
 									<Image
 										width={96}
 										height={96}
 										src={icon!}
 										alt=""
 									/>
-								</Show>
+								</Show> */}
 								<div>
 									<h4 class="text-3xl">{title}</h4>
 									<div class="text-base-content/60">
