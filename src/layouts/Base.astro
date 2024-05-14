@@ -1,16 +1,29 @@
 ---
+import type { JSX } from "astro/jsx-runtime";
 import BaseHead from "../components/BaseHead.astro";
 import Footer from "../components/Footer.astro";
 import Header from "../components/Header.astro";
 
-const { title, description } = Astro.props;
+type stuff = JSX.IntrinsicElements["body"];
+interface Props extends stuff {
+    title?: string;
+    description?: string;
+}
+const { title, description, children, ...props } = Astro.props;
+const base = "Nate Mansfield - Full-Stack Developer";
 ---
 
 <html lang="en">
     <head>
-        <BaseHead title={title} description={description} />
+        <BaseHead
+            title={title ? title + " | " + base : base}
+            description={description}
+        />
     </head>
-    <body class="lg:grid grid-cols-[244px_1fr_244px] grid-rows-[min-content_1fr] grid-flow-col lg:overflow-hidden bg-base-100 text-base-content h-screen">
+    <body
+        class="lg:grid grid-cols-[244px_1fr_244px] grid-rows-[min-content_1fr] grid-flow-col lg:overflow-hidden bg-base-100 text-base-content h-screen"
+        {...props}
+    >
         <Header />
         <main class="contents">
             <slot />
