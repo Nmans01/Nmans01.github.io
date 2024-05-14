@@ -1,0 +1,14 @@
+---
+interface Props {
+    tag: string;
+}
+
+const { tag } = Astro.props;
+---
+
+<a
+    href={tag !== "all" ? `/blog?tag=${tag.replace(/ /g, "-")}` : "/blog"}
+    class="bg-base-content/20 capitalize rounded-xl p-0.5 pb-1 first:rounded-l-lg last:rounded-r-lg text-sm px-2.5 whitespace-nowrap text-base-100 font-bold hover:bg-base-content/80 transition-all"
+>
+    {tag}
+</a>
