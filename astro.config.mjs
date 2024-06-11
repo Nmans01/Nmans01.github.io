@@ -5,6 +5,6 @@ import tailwind from "@astrojs/tailwind";
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'http://www.nmans.io',
+  site: 'https://www.nmans.io',
   integrations: [mdx(), sitemap(), tailwind()]
 });
